@@ -45,9 +45,13 @@ body {
 }
 
 #page-content-wrapper,
-.container-fluid{
+.container-fluid {
     height: 100%;
     width: 100%;
+}
+
+.container-fluid {
+    padding: 0px;
 }
 
 #map {
