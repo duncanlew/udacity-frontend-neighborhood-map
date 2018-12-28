@@ -1,9 +1,77 @@
-
-
-/* Optional: Makes the sample page fill the window.
-html,
 body {
+    overflow-x: hidden;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
     height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    /* padding: 15px; */
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+#page-content-wrapper,
+.container-fluid {
+    height: 100%;
+    width: 100%;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+#map {
+    height: 95%;
+}
+
+#heading {
+    padding: 15px;
+    background: #000;
+    text-align: center;
+}
+
+span {
     margin: 0;
-    padding: 0;
-} */
+    display: inline-block;
+    color: white;
+    font-size: xx-large;
+    line-height: 38px;
+}
+
+#menu-toggle {
+    float: left;
+}
