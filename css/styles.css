@@ -61,15 +61,15 @@ body {
 #heading {
     padding: 15px;
     background: #000;
-    text-align: center;
 }
 
-span {
+.text {
     margin: 0;
     display: inline-block;
     color: white;
     font-size: xx-large;
     line-height: 38px;
+    padding-left: 35px;
 }
 
 #menu-toggle {
