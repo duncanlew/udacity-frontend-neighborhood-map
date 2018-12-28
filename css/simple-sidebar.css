@@ -55,5 +55,23 @@ body {
 }
 
 #map {
-    height: 100%;
+    height: 95%;
+}
+
+#heading {
+    padding: 15px;
+    background: #000;
+    text-align: center;
+}
+
+span {
+    margin: 0;
+    display: inline-block;
+    color: white;
+    font-size: xx-large;
+    line-height: 38px;
+}
+
+#menu-toggle {
+    float: left;
 }
