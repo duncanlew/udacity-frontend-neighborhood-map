@@ -1,4 +1,5 @@
 let map;
+let infoWindow;
 let markers = [];
 let locations = [{
         title: 'De Haagse Markt',
@@ -88,8 +89,8 @@ function initMap() {
     });
 
     // Create markers for the map
-    let infoWindow = new google.maps.InfoWindow();
-    createMarkers(infoWindow)
+    infoWindow = new google.maps.InfoWindow();
+    createMarkers()
 
     google.maps.event.addListenerOnce(map, 'idle', function () {
         // Start Knockout after Google Maps has been loaded
@@ -104,7 +105,7 @@ function setMapCorrectHeight() {
     $("#map").height(mapsHeight);
 }
 
-function createMarkers(infoWindow) {
+function createMarkers() {
     for (let i = 0; i < locations.length; i++) {
         let position = locations[i].location;
         let title = locations[i].title;
@@ -117,13 +118,13 @@ function createMarkers(infoWindow) {
             map: map
         })
         marker.addListener('click', function () {
-            populateInfoWindow(this, infoWindow);
+            populateInfoWindow(this);
         });
         markers.push(marker);
     }
 }
 
-function populateInfoWindow(marker, infoWindow) {
+function populateInfoWindow(marker) {
     if (infoWindow.marker != marker) {
         infoWindow.marker = marker;
         infoWindow.setContent(`<div class="info-window"><h1>${marker.title}</h1></div>`);
