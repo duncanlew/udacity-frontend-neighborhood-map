@@ -28,6 +28,48 @@ let locations = [{
             lng: 4.2934081
         }
     },
+    {
+        title: 'Binnenhof',
+        location: {
+            lat: 52.0795985,
+            lng: 4.311079
+        }
+    },
+    {
+        title: 'Escher in the Palace',
+        location: {
+            lat: 52.0834332,
+            lng: 4.3121293
+        }
+    },
+    {
+        title: 'Gemeentemuseum Den Haag',
+        location: {
+            lat: 52.0899131,
+            lng: 4.2784606
+        }
+    },
+    {
+        title: 'Noordeinde Palace',
+        location: {
+            lat: 52.0808948,
+            lng: 4.3042638
+        }
+    },
+    {
+        title: 'De Pier',
+        location: {
+            lat: 52.1169819,
+            lng: 4.2774163
+        }
+    },
+    {
+        title: 'Omniversum',
+        location: {
+            lat: 52.0892494,
+            lng: 4.2798414
+        }
+    },
 ];
 
 
