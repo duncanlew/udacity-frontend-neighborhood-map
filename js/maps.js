@@ -7,9 +7,10 @@ function initMap() {
     $("#map").height(mapsHeight);
     map = new google.maps.Map($('#map')[0], {
         center: {
-            lat: -34.397,
-            lng: 150.644
+            lat: 52.0762472,
+            lng: 4.2877023
         },
-        zoom: 8
+        zoom: 13,
+        styles: styles
     });
 }
