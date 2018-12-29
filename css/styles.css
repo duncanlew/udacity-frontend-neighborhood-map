@@ -1,4 +1,4 @@
-:root{
+:root {
     --width-sidebar: 300px;
 }
 
@@ -88,22 +88,23 @@ body {
     margin: 0;
     padding: 0;
     list-style: none;
-  }
+}
 
-  .sidebar-nav li {
+.sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
     color: white;
-  }
+}
 
-  .sidebar-brand {
+.sidebar-brand {
     height: 65px;
     font-size: 18px;
     line-height: 60px;
     color: #999999;
-  }
+}
 
-  /* Infowindow styles */
-  .info-window, h1 {
-      font-size: 18px;
-  }
+/* Infowindow styles */
+.info-window,
+h1 {
+    font-size: 18px;
+}

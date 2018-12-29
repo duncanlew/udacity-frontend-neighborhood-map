@@ -3,10 +3,13 @@ function AppViewModel() {
 
     this.poiList = ko.observableArray();
 
-    console.log(Array.isArray(markers));
     markers.forEach(function (item) {
         self.poiList.push(item);
     });
+
+    this.menuToggle = function () {
+        $("#wrapper").toggleClass("toggled");
+    }
 }
 
 function startKnockout() {

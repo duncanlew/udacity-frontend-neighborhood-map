@@ -90,9 +90,9 @@ function initMap() {
     // Create markers for the map
     let infoWindow = new google.maps.InfoWindow();
     createMarkers(infoWindow)
-    
-    google.maps.event.addListenerOnce(map, 'idle', function(){
-        // do something only the first time the map is loaded
+
+    google.maps.event.addListenerOnce(map, 'idle', function () {
+        // Start Knockout after Google Maps has been loaded
         startKnockout();
     });
 }

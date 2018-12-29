@@ -35,7 +35,6 @@
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
                     </div>
-                    
                 </div>
 
             </div>
@@ -45,7 +44,7 @@
         <!-- Page content -->
         <div id="page-content-wrapper">
             <div id="heading">
-                <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Menu</a>
+                <button class="btn btn-primary" id="menu-toggle" data-bind="click:menuToggle">Menu</button>
                 <span class="text">The Hague</span>
             </div>
             <div id="map"></div>
@@ -64,14 +63,7 @@
     <script type='text/javascript' src='js/map_styles.js'></script>
     <script type='text/javascript' src='js/maps.js'></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoDu2OLG_c6tLTx4iB2daWyA5qjoq4abA&callback=initMap"></script>
-    
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
-    
+
 </body>
 
 </html>
