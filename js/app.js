@@ -5,7 +5,6 @@ function AppViewModel() {
 
     console.log(Array.isArray(markers));
     markers.forEach(function (item) {
-        console.log(item);
         self.poiList.push(item);
     });
 }
