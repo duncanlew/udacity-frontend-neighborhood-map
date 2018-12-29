@@ -45,12 +45,10 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <ul>
-                                <li>Number one</li>
-                                <li>Number two</li>
+                            <ul data-bind="foreach: poiList">
+                                <li data-bind="text: title"></li>
                             </ul>
                         </div>
-
                     </div>
 
                 </div>
