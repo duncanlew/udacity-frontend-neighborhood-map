@@ -1,6 +1,6 @@
 function AppViewModel() {
     let self = this;
-
+    this.filterWord = ko.observable("");
     this.poiList = ko.observableArray();
 
     markers.forEach(function (item) {
@@ -19,6 +19,10 @@ function AppViewModel() {
 
     this.clickedRecenterMap = function(){
         recenterMap();
+    }
+
+    this.clickedGo = function(){
+        console.log("clickedGo!!");
     }
 }
 
