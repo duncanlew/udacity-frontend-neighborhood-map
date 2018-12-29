@@ -1,3 +1,7 @@
+:root{
+    --width-sidebar: 300px;
+}
+
 body {
     overflow-x: hidden;
 }
@@ -11,16 +15,16 @@ body {
 }
 
 #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: var(--width-sidebar);
 }
 
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    left: 250px;
+    left: var(--width-sidebar);
     width: 0;
     height: 100%;
-    margin-left: -250px;
+    margin-left: calc(var(--width-sidebar) * -1);
     overflow-y: auto;
     background: #000;
     -webkit-transition: all 0.5s ease;
@@ -30,7 +34,7 @@ body {
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: var(--width-sidebar);
 }
 
 #page-content-wrapper {
@@ -41,7 +45,7 @@ body {
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -250px;
+    margin-right: calc(var(--width-sidebar) * -1);
 }
 
 #page-content-wrapper,
@@ -80,7 +84,7 @@ body {
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
+    width: var(--width-sidebar);
     margin: 0;
     padding: 0;
     list-style: none;
