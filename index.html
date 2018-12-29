@@ -46,7 +46,7 @@
                     <div class="row">
                         <div class="col-12">
                             <ul data-bind="foreach: poiList">
-                                <li data-bind="text: title"></li>
+                                <li data-bind="text: title, click:$parent.clickedMarker"></li>
                             </ul>
                         </div>
                     </div>

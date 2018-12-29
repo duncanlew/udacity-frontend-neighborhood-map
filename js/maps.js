@@ -135,3 +135,8 @@ function populateInfoWindow(marker) {
         })
     }
 }
+
+function zoomToArea(marker) {
+    map.setCenter(marker.position);
+    map.setZoom(15);
+}
