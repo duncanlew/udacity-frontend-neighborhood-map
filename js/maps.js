@@ -91,6 +91,7 @@ function initMap() {
     });
 
     // Markers
+    let infoWindow = new google.maps.InfoWindow();
     for (let i = 0; i < locations.length; i++) {
         let position = locations[i].location;
         let title = locations[i].title;
@@ -102,7 +103,22 @@ function initMap() {
             id: i,
             map: map
         })
+        marker.addListener('click', function () {
+            populateInfoWindow(this, infoWindow);
+        });
         markers.push(marker);
 
+    }
+}
+
+function populateInfoWindow(marker, infoWindow) {
+    if (infoWindow.marker != marker) {
+        infoWindow.marker = marker;
+        infoWindow.setContent(`<h1>${marker.title}</h1>`);
+        infoWindow.open(map, marker);
+
+        infoWindow.addListener('closeclick', function () {
+            infoWindow.marker = null;
+        })
     }
 }
