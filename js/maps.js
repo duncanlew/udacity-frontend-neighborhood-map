@@ -124,6 +124,7 @@ function createMarkers() {
         })
         marker.addListener('click', function () {
             populateInfoWindow(this);
+            zoomToArea(this);
         });
         markers.push(marker);
     }
