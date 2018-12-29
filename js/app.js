@@ -10,9 +10,15 @@ function AppViewModel() {
     this.menuToggle = function () {
         $("#wrapper").toggleClass("toggled");
     }
+
     this.clickedMarker = function(marker) {
         populateInfoWindow(marker);
         zoomToArea(marker);
+        $("#wrapper").toggleClass("toggled");
+    }
+
+    this.clickedRecenterMap = function(){
+        recenterMap();
     }
 }
 

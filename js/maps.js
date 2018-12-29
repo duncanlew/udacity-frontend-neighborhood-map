@@ -1,72 +1,80 @@
 let map;
 let infoWindow;
 let markers = [];
+let startingLocation = {
+    title: "The Hague",
+    position: {
+        lat: 52.0762472,
+        lng: 4.2877023
+    },
+    zoom: 13
+}
 let locations = [{
         title: 'De Haagse Markt',
-        location: {
+        position: {
             lat: 52.0720782,
             lng: 4.3081515
         }
     },
     {
         title: 'Madurodam',
-        location: {
+        position: {
             lat: 52.0994757,
             lng: 4.2947364
         }
     },
     {
         title: 'Mauritshuis',
-        location: {
+        position: {
             lat: 52.0804205,
             lng: 4.3121073
         }
     },
     {
         title: 'Peace Palace',
-        location: {
+        position: {
             lat: 52.0865911,
             lng: 4.2934081
         }
     },
     {
         title: 'Binnenhof',
-        location: {
+        position: {
             lat: 52.0795985,
             lng: 4.311079
         }
     },
     {
         title: 'Escher in the Palace',
-        location: {
+        position: {
             lat: 52.0834332,
             lng: 4.3121293
         }
     },
     {
         title: 'Gemeentemuseum Den Haag',
-        location: {
+        position: {
             lat: 52.0899131,
             lng: 4.2784606
         }
     },
     {
         title: 'Noordeinde Palace',
-        location: {
+        position: {
             lat: 52.0808948,
             lng: 4.3042638
         }
     },
     {
         title: 'De Pier',
-        location: {
+        position: {
             lat: 52.1169819,
             lng: 4.2774163
         }
     },
     {
         title: 'Omniversum',
-        location: {
+        position: {
             lat: 52.0892494,
             lng: 4.2798414
         }
@@ -80,11 +88,8 @@ function initMap() {
 
     // Creation of map object
     map = new google.maps.Map($('#map')[0], {
-        center: {
-            lat: 52.0762472,
-            lng: 4.2877023
-        },
-        zoom: 13,
+        center: startingLocation.position,
+        zoom: startingLocation.zoom,
         styles: styles
     });
 
@@ -107,7 +112,7 @@ function setMapCorrectHeight() {
 
 function createMarkers() {
     for (let i = 0; i < locations.length; i++) {
-        let position = locations[i].location;
+        let position = locations[i].position;
         let title = locations[i].title;
 
         let marker = new google.maps.Marker({
@@ -137,6 +142,11 @@ function populateInfoWindow(marker) {
 }
 
 function zoomToArea(marker) {
-    map.setCenter(marker.position);
+    map.panTo(marker.position);
     map.setZoom(15);
+}
+
+function recenterMap() {
+    map.panTo(startingLocation.position);
+    map.setZoom(startingLocation.zoom);
 }
