@@ -99,9 +99,9 @@ function initMap() {
             position: position,
             title: title,
             animation: google.maps.Animation.DROP,
-            id: i
+            id: i,
+            map: map
         })
-        marker.setMap(map);
         markers.push(marker);
 
     }
