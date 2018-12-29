@@ -75,10 +75,7 @@ let locations = [{
 
 function initMap() {
     // Calculate size of map to fit viewport
-    let headingHeight = $("#heading").outerHeight(true);
-    let windowHeight = $(window).outerHeight(true);
-    let mapsHeight = windowHeight - headingHeight;
-    $("#map").height(mapsHeight);
+    setMapCorrectHeight();
 
     // Creation of map object
     map = new google.maps.Map($('#map')[0], {
@@ -90,8 +87,19 @@ function initMap() {
         styles: styles
     });
 
-    // Markers
+    // Create markers for the map
     let infoWindow = new google.maps.InfoWindow();
+    createMarkers(infoWindow)
+}
+
+function setMapCorrectHeight() {
+    let headingHeight = $("#heading").outerHeight(true);
+    let windowHeight = $(window).outerHeight(true);
+    let mapsHeight = windowHeight - headingHeight;
+    $("#map").height(mapsHeight);
+}
+
+function createMarkers(infoWindow) {
     for (let i = 0; i < locations.length; i++) {
         let position = locations[i].location;
         let title = locations[i].title;
@@ -107,7 +115,6 @@ function initMap() {
             populateInfoWindow(this, infoWindow);
         });
         markers.push(marker);
-
     }
 }
 
