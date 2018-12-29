@@ -114,7 +114,7 @@ function initMap() {
 function populateInfoWindow(marker, infoWindow) {
     if (infoWindow.marker != marker) {
         infoWindow.marker = marker;
-        infoWindow.setContent(`<h1>${marker.title}</h1>`);
+        infoWindow.setContent(`<div class="info-window"><h1>${marker.title}</h1></div>`);
         infoWindow.open(map, marker);
 
         infoWindow.addListener('closeclick', function () {

@@ -102,3 +102,8 @@ body {
     line-height: 60px;
     color: #999999;
   }
+
+  /* Infowindow styles */
+  .info-window, h1 {
+      font-size: 18px;
+  }
