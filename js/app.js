@@ -41,6 +41,7 @@ function AppViewModel() {
     this.clickedMarker = function (marker) {
         populateInfoWindow(marker);
         zoomToArea(marker);
+        bounceMarker(marker);
         self.menuToggle();
     }
 

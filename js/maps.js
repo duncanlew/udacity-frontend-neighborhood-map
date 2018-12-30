@@ -123,6 +123,7 @@ function createMarkers() {
         })
         marker.addListener('click', function () {
             populateInfoWindow(this);
+            bounceMarker(this);
         });
         markers.push(marker);
     }
@@ -164,7 +165,13 @@ function fitMapToMarkers() {
         var extendPoint2 = new google.maps.LatLng(bounds.getNorthEast().lat() - 0.01, bounds.getNorthEast().lng() - 0.01);
         bounds.extend(extendPoint1);
         bounds.extend(extendPoint2);
-     }
- 
+    }
     map.fitBounds(bounds);
+}
+
+function bounceMarker(marker) {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout(function () {
+        marker.setAnimation(null);
+    }, 1000);
 }
