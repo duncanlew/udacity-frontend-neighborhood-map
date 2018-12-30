@@ -2,9 +2,13 @@ function AppViewModel() {
     let self = this;
     this.filterWord = ko.observable("");
     this.poiList = ko.observableArray();
-
+    
     markers.forEach(function (item) {
         self.poiList.push(item);
+    });
+    
+    this.filteredPOIList = ko.computed(function(){
+        return self.poiList()[0].title + "Hello";
     });
 
     this.menuToggle = function () {
