@@ -4,20 +4,6 @@ let clientSecret = "JXX45EHZNRK31OPUBOHVTW4HDFNTESIJJ5LLTIHBWQ3IHCMY";
 let authenticationParameter = "&client_id=" + clientID + "&client_secret=" + clientSecret;
 let versionDate = "&v=20181229"
 
-searchForVenues().then(function (result) {
-    console.log(result);
-    let venueID = result.response.venues[0].id;
-    getVenueDetails(venueID).then(function(result){
-        console.log(result);
-        let name = result.response.venue.name;
-        let phone = result.response.venue.contact.formattedPhone;
-        let address = result.response.venue.location.formattedAddress[0];
-        let zipCode = result.response.venue.location.formattedAddress[1];
-        let country = result.response.venue.location.formattedAddress[2];
-        let url = result.response.venue.url;
-    });
-});
-
 // Search for Venues
 function searchForVenues() {
     let url = "https://api.foursquare.com/v2/venues/search" +
@@ -46,9 +32,6 @@ function getVenueDetails(venueID) {
         dataType: "json",
         cache: false,
         url: url,
-        success: function (result) {
-            console.log(result);
-        },
         error: function (xhr, status, error) {
             console.log(xhr);
             console.log(status);

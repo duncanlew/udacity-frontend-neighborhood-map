@@ -121,6 +121,32 @@ function createMarkers() {
             animation: google.maps.Animation.DROP,
             id: i,
         })
+
+        if (i === 0) {
+            console.log(marker.title);
+            searchForVenues().then(function (result) {
+                console.log(result);
+                let venueID = result.response.venues[0].id;
+                getVenueDetails(venueID).then(function (result) {
+                    console.log(result);
+                    let name = result.response.venue.name;
+                    let phone = result.response.venue.contact.formattedPhone;
+                    let address = result.response.venue.location.formattedAddress[0];
+                    let zipCode = result.response.venue.location.formattedAddress[1];
+                    let country = result.response.venue.location.formattedAddress[2];
+                    let url = result.response.venue.url;
+
+                    marker.nameHTML = `<p>${name}</p>`;
+                    marker.phoneHTML = `<p>${phone}</p>`;
+                    marker.addressHTML = `<p>${address}</p>`;
+                    marker.zipCodeHTML = `<p>${zipCode}</p>`;
+                    marker.countryHTML = `<p>${country}</p>`;
+                    marker.urlHTML = `<p>${url}</p>`;
+                });
+            });
+        }
+
+
         marker.addListener('click', function () {
             populateInfoWindow(this);
             bounceMarker(this);
@@ -132,7 +158,7 @@ function createMarkers() {
 function populateInfoWindow(marker) {
     if (infoWindow.marker != marker) {
         infoWindow.marker = marker;
-        infoWindow.setContent(`<div class="info-window"><h1>${marker.title}</h1></div>`);
+        infoWindow.setContent(`<div class="info-window"><h1>${marker.title}</h1>${marker.phoneHTML}</div>`);
         infoWindow.open(map, marker);
 
         infoWindow.addListener('closeclick', function () {
