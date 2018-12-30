@@ -6,6 +6,7 @@ function AppViewModel() {
     ko.utils.arrayPushAll(this.poiList(), markers);
 
     this.filteredPOIList = ko.computed(function () {
+        // Filters which poi are displayed in the list and as a marker on the map
         let filter = self.filterWord().toLowerCase();
         if (!filter) {
             ko.utils.arrayForEach(self.poiList(), function(poi) {
