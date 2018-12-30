@@ -27,6 +27,10 @@ function AppViewModel() {
         $("#wrapper").toggleClass("toggled");
     }
 
+    this.clickedResetFilter = function() {
+        this.filterWord("");
+    }
+
     this.clickedRecenterMap = function () {
         recenterMap();
     }
