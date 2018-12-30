@@ -75,8 +75,8 @@ let locations = [{
     {
         title: 'Omniversum',
         position: {
-            lat: 52.0892494,
-            lng: 4.2798414
+            lat: 52.08937727145052,
+            lng: 4.281729695781964
         }
     },
 ];
