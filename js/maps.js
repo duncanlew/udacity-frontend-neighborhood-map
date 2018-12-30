@@ -12,64 +12,64 @@ let startingLocation = {
 let locations = [{
         title: 'De Haagse Markt',
         position: {
-            lat: 52.0720782,
-            lng: 4.3081515
+            lat: 52.06503762916279,
+            lng: 4.299366977145978
         }
     },
     {
         title: 'Madurodam',
         position: {
-            lat: 52.0994757,
-            lng: 4.2947364
+            lat: 52.09908797895354,
+            lng: 4.298863363483052
         }
     },
     {
         title: 'Mauritshuis',
         position: {
-            lat: 52.0804205,
-            lng: 4.3121073
+            lat: 52.080303656366404,
+            lng: 4.314457251614486
         }
     },
     {
         title: 'Peace Palace',
         position: {
-            lat: 52.0865911,
-            lng: 4.2934081
+            lat: 52.08611889900742,
+            lng: 4.295209836563272
         }
     },
     {
         title: 'Binnenhof',
         position: {
-            lat: 52.0795985,
-            lng: 4.311079
+            lat: 52.079457031469644,
+            lng: 4.312365524934367
         }
     },
     {
-        title: 'Escher in the Palace',
+        title: 'Escher in het Paleis',
         position: {
-            lat: 52.0834332,
-            lng: 4.3121293
+            lat: 52.083381407262536,
+            lng: 4.314079464728019
         }
     },
     {
         title: 'Gemeentemuseum Den Haag',
         position: {
-            lat: 52.0899131,
-            lng: 4.2784606
+            lat: 52.08928982328055,
+            lng: 4.280290603637695
         }
     },
     {
         title: 'Noordeinde Palace',
         position: {
-            lat: 52.0808948,
-            lng: 4.3042638
+            lat: 52.080764,
+            lng: 4.307623
         }
     },
     {
         title: 'De Pier',
         position: {
-            lat: 52.1169819,
-            lng: 4.2774163
+            lat: 52.117825003805194,
+            lng: 4.279882607795804
         }
     },
     {
