@@ -27,7 +27,7 @@ function AppViewModel() {
 
     this.executeMapBoundsFitting =  ko.computed(function() {
         let filteredPOIList = self.filteredPOIList();
-        fitMapToBounds();
+        fitMapToMarkers();
     })
 
     // All click bindings //
