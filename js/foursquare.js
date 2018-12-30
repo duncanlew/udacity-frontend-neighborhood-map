@@ -4,37 +4,37 @@ let clientSecret = "JXX45EHZNRK31OPUBOHVTW4HDFNTESIJJ5LLTIHBWQ3IHCMY";
 let authenticationParameter = "&client_id=" + clientID + "&client_secret=" + clientSecret;
 let versionDate = "&v=20181229"
 
-searchForVenues();
+searchForVenues().then(function (result) {
+    console.log("I'm in the THEN");
+    console.log(result);
+    let venueID = result.response.venues[0].id;
+    getVenueDetails(venueID);
+});
 
 // Search for Venues
 function searchForVenues() {
     let url = "https://api.foursquare.com/v2/venues/search" +
         "?ll=52.0892494,4.2798414" +
         "&query=Omniversum" + authenticationParameter + versionDate;
-    $.ajax({
+    return $.ajax({
         type: "GET",
         dataType: "json",
         cache: false,
         url: url,
-        success: function (result) {
-            console.log(result);
-            let venueID = result.response.venues[0].id;
-            getVenueDetails(venueID)
-        },
         error: function (xhr, status, error) {
             console.log(xhr);
             console.log(status);
             console.log(error);
             alert(`Unable to complete the Fourqure API request for \"Search for Venues\"! (error:${xhr.responseJSON.meta.errorType})`);
         }
-    })
+    });
 }
 
 // Get Details of Venue
 function getVenueDetails(venueID) {
     let url = "https://api.foursquare.com/v2/venues/" + venueID + "?" +
         authenticationParameter + versionDate;
-    $.ajax({
+    return $.ajax({
         type: "GET",
         dataType: "json",
         cache: false,
