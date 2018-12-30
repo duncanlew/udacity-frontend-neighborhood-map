@@ -37,16 +37,18 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Filter places..." data-bind="value:filterWord" id="filter-word">
+                                <input type="text" class="form-control" placeholder="Filter places..." data-bind="value:filterWord"
+                                    id="filter-word">
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="button" data-bind="click:clickedGo">Go!</button>
                                 </span>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-12">
-                            <ul data-bind="foreach: poiList">
+                            <ul data-bind="foreach: filteredPOIList">
                                 <li data-bind="text: title, click:$parent.clickedMarker"></li>
                             </ul>
                         </div>
