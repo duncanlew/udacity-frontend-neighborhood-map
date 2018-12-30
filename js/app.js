@@ -1,5 +1,6 @@
 function AppViewModel() {
     let self = this;
+    this.closedSidebar = ko.observable(true); // Check the closed state of sidebar
     this.filterWord = ko.observable("");
     this.poiList = ko.observableArray();
     ko.utils.arrayPushAll(this.poiList(), markers);
@@ -18,13 +19,15 @@ function AppViewModel() {
     });
 
     this.menuToggle = function () {
-        $("#wrapper").toggleClass("toggled");
+        ko.utils.toggleDomNodeCssClass($("#wrapper")[0], "toggled", self.closedSidebar());
+        // Toggle the boolean value
+        this.closedSidebar(!this.closedSidebar());
     }
 
     this.clickedMarker = function (marker) {
         populateInfoWindow(marker);
         zoomToArea(marker);
-        $("#wrapper").toggleClass("toggled");
+        self.menuToggle();
     }
 
     this.clickedResetFilter = function() {
