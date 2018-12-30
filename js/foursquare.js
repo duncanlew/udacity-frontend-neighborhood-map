@@ -5,7 +5,6 @@ let authenticationParameter = "&client_id=" + clientID + "&client_secret=" + cli
 let versionDate = "&v=20181229"
 
 searchForVenues().then(function (result) {
-    console.log("I'm in the THEN");
     console.log(result);
     let venueID = result.response.venues[0].id;
     getVenueDetails(venueID);
