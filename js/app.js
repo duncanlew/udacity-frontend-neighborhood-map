@@ -22,7 +22,7 @@ function AppViewModel() {
     }
 
     this.clickedGo = function(){
-        console.log("clickedGo!!");
+        self.filterWord($("#filter-word").val());
     }
 }
 
