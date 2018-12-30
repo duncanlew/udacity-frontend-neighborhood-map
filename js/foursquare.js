@@ -7,7 +7,15 @@ let versionDate = "&v=20181229"
 searchForVenues().then(function (result) {
     console.log(result);
     let venueID = result.response.venues[0].id;
-    getVenueDetails(venueID);
+    getVenueDetails(venueID).then(function(result){
+        console.log(result);
+        let name = result.response.venue.name;
+        let phone = result.response.venue.contact.formattedPhone;
+        let address = result.response.venue.location.formattedAddress[0];
+        let zipCode = result.response.venue.location.formattedAddress[1];
+        let country = result.response.venue.location.formattedAddress[2];
+        let url = result.response.venue.url;
+    });
 });
 
 // Search for Venues
