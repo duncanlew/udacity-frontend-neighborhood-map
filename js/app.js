@@ -8,17 +8,26 @@ function AppViewModel() {
     this.filteredPOIList = ko.computed(function () {
         let filter = self.filterWord().toLowerCase();
         if (!filter) {
+            ko.utils.arrayForEach(self.poiList(), function(poi) {
+                poi.setMap(map);
+            });
+            recenterMap();
             return self.poiList();
         } else {
             return ko.utils.arrayFilter(self.poiList(), function (poi) {
                 if (poi.title.toLowerCase().includes(filter)) {
+                    poi.setMap(map);
                     return poi;
+                } else {
+                    poi.setMap(null);
                 }
             });
         }
     });
 
+    // All click bindings //
     this.menuToggle = function () {
+        // Open or close the sidebar based on the state of the closedSidebar
         ko.utils.toggleDomNodeCssClass($("#wrapper")[0], "toggled", self.closedSidebar());
         // Toggle the boolean value
         this.closedSidebar(!this.closedSidebar());
