@@ -12,7 +12,6 @@ function AppViewModel() {
             ko.utils.arrayForEach(self.poiList(), function(poi) {
                 poi.setMap(map);
             });
-            recenterMap();
             return self.poiList();
         } else {
             return ko.utils.arrayFilter(self.poiList(), function (poi) {
@@ -25,6 +24,11 @@ function AppViewModel() {
             });
         }
     });
+
+    this.executeMapBoundsFitting =  ko.computed(function() {
+        let filteredPOIList = self.filteredPOIList();
+        fitMapToBounds();
+    })
 
     // All click bindings //
     this.menuToggle = function () {

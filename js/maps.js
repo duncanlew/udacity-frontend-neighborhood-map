@@ -120,7 +120,6 @@ function createMarkers() {
             title: title,
             animation: google.maps.Animation.DROP,
             id: i,
-            map: map
         })
         marker.addListener('click', function () {
             populateInfoWindow(this);
@@ -149,4 +148,14 @@ function zoomToArea(marker) {
 function recenterMap() {
     map.panTo(startingLocation.position);
     map.setZoom(startingLocation.zoom);
+}
+
+function fitMapToBounds() {
+    let bounds = new google.maps.LatLngBounds();
+    for (let i = 0; i < markers.length; i++) {
+        if (markers[i].getMap()) {
+            bounds.extend(markers[i].position);
+        }
+    }
+    map.fitBounds(bounds);
 }
