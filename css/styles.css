@@ -102,12 +102,6 @@ body {
     color: #999999;
 }
 
-/* Infowindow styles */
-.info-window,
-h1 {
-    font-size: 18px;
-}
-
 ul {
     list-style: none;
     padding-left: 0;
@@ -115,4 +109,17 @@ ul {
 
 li:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+/* Infowindow styles */
+.info-window {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.info-window h1 {
+    font-size: 18px;
+}
+
+.info-window p {
+    line-height: 1px;
 }

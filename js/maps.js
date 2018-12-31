@@ -122,29 +122,37 @@ function createMarkers() {
             id: i,
         })
 
-        if (i === 0) {
-            console.log(marker.title);
-            searchForVenues().then(function (result) {
-                console.log(result);
-                let venueID = result.response.venues[0].id;
-                getVenueDetails(venueID).then(function (result) {
-                    console.log(result);
-                    let name = result.response.venue.name;
-                    let phone = result.response.venue.contact.formattedPhone;
-                    let address = result.response.venue.location.formattedAddress[0];
-                    let zipCode = result.response.venue.location.formattedAddress[1];
-                    let country = result.response.venue.location.formattedAddress[2];
-                    let url = result.response.venue.url;
+        /**************************************** */
+        /* Temporary !!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        marker.nameHTML = `Omniversum`;
+        marker.phoneHTML = `+31-12345678`;
+        marker.addressHTML = `Haagseweg 508`;
+        marker.zipCodeHTML = `1234AB Den Haag`;
+        marker.countryHTML = `The Netherlarnds`;
+        marker.urlHTML = `www.denhaag.nl`;
+        // if (i === 0) {
+        //     console.log(marker.title);
+        //     searchForVenues().then(function (result) {
+        //         console.log(result);
+        //         let venueID = result.response.venues[0].id;
+        //         getVenueDetails(venueID).then(function (result) {
+        //             console.log(result);
+        //             let name = result.response.venue.name;
+        //             let phone = result.response.venue.contact.formattedPhone;
+        //             let address = result.response.venue.location.formattedAddress[0];
+        //             let zipCode = result.response.venue.location.formattedAddress[1];
+        //             let country = result.response.venue.location.formattedAddress[2];
+        //             let url = result.response.venue.url;
 
-                    marker.nameHTML = `<p>${name}</p>`;
-                    marker.phoneHTML = `<p>${phone}</p>`;
-                    marker.addressHTML = `<p>${address}</p>`;
-                    marker.zipCodeHTML = `<p>${zipCode}</p>`;
-                    marker.countryHTML = `<p>${country}</p>`;
-                    marker.urlHTML = `<p>${url}</p>`;
-                });
-            });
-        }
+        //             marker.nameHTML = `<p>${name}</p>`;
+        //             marker.phoneHTML = `<p>${phone}</p>`;
+        //             marker.addressHTML = `<p>${address}</p>`;
+        //             marker.zipCodeHTML = `<p>${zipCode}</p>`;
+        //             marker.countryHTML = `<p>${country}</p>`;
+        //             marker.urlHTML = `<p>${url}</p>`;
+        //         });
+        //     });
+        // }
 
 
         marker.addListener('click', function () {
@@ -156,9 +164,17 @@ function createMarkers() {
 }
 
 function populateInfoWindow(marker) {
+    let contentString = `<div class="info-window">
+    <h1>${marker.title}</h1>  
+    <p>${marker.addressHTML}</p>
+    <p>${marker.zipCodeHTML}</p>
+    <p>${marker.countryHTML}</p>
+    <p>${marker.phoneHTML}</p>
+    <a href="${marker.urlHTML}">${marker.urlHTML}</a>
+    </div>`;
     if (infoWindow.marker != marker) {
         infoWindow.marker = marker;
-        infoWindow.setContent(`<div class="info-window"><h1>${marker.title}</h1>${marker.phoneHTML}</div>`);
+        infoWindow.setContent(contentString);
         infoWindow.open(map, marker);
 
         infoWindow.addListener('closeclick', function () {
