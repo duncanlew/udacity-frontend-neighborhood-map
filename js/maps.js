@@ -195,11 +195,15 @@ function bounceMarker(marker) {
 
 function getAddress(marker) {
     // Default values for properties
-    marker.phone = "Number not available";
+    
     marker.address = "Address is not available";
     marker.zipCode = "Zipcode is not available";
     marker.country = "Country is not available";
+    /******************************************* */
+    /* Remove these variables if handles somewhere else */
+    marker.phone = "Number not available";
     marker.url = "URL not available";
+    /******************************************** */
     searchForVenues(marker).then(function (result) {
         console.log("Venue Search result");
         console.log(result);
