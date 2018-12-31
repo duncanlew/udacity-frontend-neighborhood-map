@@ -137,3 +137,9 @@ li:hover {
     height: 1px !important;
     padding-right: 5px;
 }
+
+.footer {
+    padding-top: 12px;
+    color: gray;
+    font-size: 10px;
+}

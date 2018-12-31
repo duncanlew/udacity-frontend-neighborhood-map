@@ -122,6 +122,13 @@ function createMarkers() {
             id: i,
         })
 
+        // Default values for properties
+        marker.name = "Name not available";
+        marker.phone = "Number not available";
+        marker.address = "Address is not available";
+        marker.zipCode = "Zipcode is not available";
+        marker.country = "Country is not available";
+        marker.url = "URL not available";
         searchForVenues(marker).then(function (result) {
             console.log("Venue Search result");
             console.log(result);
@@ -129,12 +136,12 @@ function createMarkers() {
             getVenueDetails(venueID).then(function (result) {
                 console.log("Venue Details result");
                 console.log(result);
-                marker.name = result.response.venue.name;
-                marker.phone = result.response.venue.contact.formattedPhone;
-                marker.address = result.response.venue.location.formattedAddress[0];
-                marker.zipCode = result.response.venue.location.formattedAddress[1];
-                marker.country = result.response.venue.location.formattedAddress[2];
-                marker.url = result.response.venue.url;
+                if (result.response.venue.name) marker.name = result.response.venue.name;
+                if (result.response.venue.contact.formattedPhone) marker.phone = result.response.venue.contact.formattedPhone;
+                if (result.response.venue.location.formattedAddress) marker.address = result.response.venue.location.formattedAddress[0];
+                if (result.response.venue.location.formattedAddress) marker.zipCode = result.response.venue.location.formattedAddress[1];
+                if (result.response.venue.location.formattedAddress) marker.country = result.response.venue.location.formattedAddress[2];
+                if (result.response.venue.url) marker.url = result.response.venue.url;
             });
             getVenuePhoto(venueID).then(function (result) {
                 console.log("Venue Photo result");
@@ -155,8 +162,10 @@ function createMarkers() {
 }
 
 function populateInfoWindow(marker) {
+    let imgURLHTML = "";
+    if (marker.imgURL) imgURLHTML = `<img src="${marker.imgURL}"/>`;
     let contentString = `<div class="info-window">
-    <img src="${marker.imgURL}"/>
+    ${imgURLHTML}
     <div class="text-location">
     <h1>${marker.title}</h1>  
     <p>${marker.address}</p>
@@ -164,6 +173,7 @@ function populateInfoWindow(marker) {
     <p>${marker.country}</p>
     <p><i class="fas fa-phone"></i>${marker.phone}</p>
     <i class="fas fa-globe-europe"></i><a href="${marker.url}">${marker.url}</a>
+    <p class="footer">Venue information retrieved from Foursquare</p>
     </div>
     </div>`;
     if (infoWindow.marker != marker) {
