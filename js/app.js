@@ -26,22 +26,23 @@ function AppViewModel() {
     });
 
     this.executeMapBoundsFitting = ko.computed(function () {
+        // Only fit map to markers if there are markers in view
         if (self.filteredPOIList().length > 0) {
             fitMapToMarkers();
         }
 
+        // If there is only one marker in view, open its infowindow
         if (self.filteredPOIList().length === 1) {
-            self.openMarker(self.filteredPOIList()[0]);
+            self.openMarkerInfoWindow(self.filteredPOIList()[0]);
         }
     })
 
-    this.openMarker = function(marker) {
+    this.openMarkerInfoWindow = function(marker) {
         populateInfoWindow(marker);
         zoomToArea(marker);
         bounceMarker(marker);
     }
 
-    // All click bindings //
     this.menuToggle = function () {
         // Open or close the sidebar based on the state of the closedSidebar
         ko.utils.toggleDomNodeCssClass($("#wrapper")[0], "toggled", self.closedSidebar());
@@ -50,18 +51,12 @@ function AppViewModel() {
     }
 
     this.clickedMarker = function (marker) {
-        populateInfoWindow(marker);
-        zoomToArea(marker);
-        bounceMarker(marker);
+        self.openMarkerInfoWindow(marker);
         self.menuToggle();
     }
 
     this.clickedRecenterMap = function () {
         recenterMap();
-    }
-
-    this.clickedGo = function () {
-        self.filterWord($("#filter-word").val());
     }
 }
 
