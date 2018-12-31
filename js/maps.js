@@ -130,6 +130,7 @@ function createMarkers() {
         marker.zipCodeHTML = `1234AB Den Haag`;
         marker.countryHTML = `The Netherlarnds`;
         marker.urlHTML = `www.denhaag.nl`;
+        marker.imgURL = "https://fastly.4sqi.net/img/general/116x116/-_PMJMhipYMDmFGuLCeGO-wcg1qOCv3wDYax8pKiubg.jpg";
         // if (i === 0) {
         //     console.log(marker.title);
         //     searchForVenues().then(function (result) {
@@ -165,12 +166,15 @@ function createMarkers() {
 
 function populateInfoWindow(marker) {
     let contentString = `<div class="info-window">
+    <img src="${marker.imgURL}"/>
+    <div class="testing-window">
     <h1>${marker.title}</h1>  
     <p>${marker.addressHTML}</p>
     <p>${marker.zipCodeHTML}</p>
     <p>${marker.countryHTML}</p>
-    <p>${marker.phoneHTML}</p>
-    <a href="${marker.urlHTML}">${marker.urlHTML}</a>
+    <p><i class="fas fa-phone"></i>${marker.phoneHTML}</p>
+    <i class="fas fa-globe-europe"></i><a href="${marker.urlHTML}">${marker.urlHTML}</a>
+    </div>
     </div>`;
     if (infoWindow.marker != marker) {
         infoWindow.marker = marker;

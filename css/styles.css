@@ -123,3 +123,16 @@ li:hover {
 .info-window p {
     line-height: 1px;
 }
+
+.info-window img {
+    float: left;
+}
+
+.testing-window {
+    float: left;
+    padding-left: 5px;
+}
+
+.fa-phone, .fa-globe-europe {
+    height: 1px !important;
+}
