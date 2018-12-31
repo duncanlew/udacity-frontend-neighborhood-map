@@ -1,4 +1,5 @@
 let map;
+let placesService;
 let infoWindow;
 let markers = [];
 let startingLocation = {
@@ -92,6 +93,9 @@ function initMap() {
         zoom: startingLocation.zoom,
         styles: styles
     });
+    // Create PlacesService object
+    placesService = new google.maps.places.PlacesService(map);
+    
 
     // Create markers for the map
     infoWindow = new google.maps.InfoWindow();
@@ -121,8 +125,22 @@ function createMarkers() {
             animation: google.maps.Animation.DROP,
             id: i,
         })
+        /************************************ */
+        placesService.findPlaceFromQuery({
+            query: marker.title,
+            fields: ['photos', 'formatted_address', 'name', 'rating', 'opening_hours', 'geometry'],
+            locationBias: marker.position
+        }, function(results, status){
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                console.log(`I am looking for ${marker.title}`);
+                console.log(results);
+            } else{
+                console.log("ERROR");
+            }
 
-        getAddress(marker)
+        });
+        /************************************* */
+        getAddress(marker);
 
         marker.addListener('click', function () {
             populateInfoWindow(this);
@@ -205,8 +223,8 @@ function getAddress(marker) {
     marker.url = "URL not available";
     /******************************************** */
     searchForVenues(marker).then(function (result) {
-        console.log("Venue Search result");
-        console.log(result);
+        //console.log("Venue Search result");
+        //console.log(result);
         if (result.response.venues[0].location.formattedAddress) marker.address = result.response.venues[0].location.formattedAddress[0];
         if (result.response.venues[0].location.formattedAddress) marker.zipCode = result.response.venues[0].location.formattedAddress[1];
         if (result.response.venues[0].location.formattedAddress) marker.country = result.response.venues[0].location.formattedAddress[2];
