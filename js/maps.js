@@ -122,7 +122,6 @@ function createMarkers() {
             id: i,
         })
 
-        console.log(marker.title);
         searchForVenues(marker).then(function (result) {
             console.log("Venue Search result");
             console.log(result);
