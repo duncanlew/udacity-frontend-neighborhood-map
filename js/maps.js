@@ -1,4 +1,5 @@
 let map;
+let placesService;
 let infoWindow;
 let markers = [];
 let startingLocation = {
@@ -92,6 +93,9 @@ function initMap() {
         zoom: startingLocation.zoom,
         styles: styles
     });
+    // Create PlacesService object
+    placesService = new google.maps.places.PlacesService(map);
+
 
     // Create markers for the map
     infoWindow = new google.maps.InfoWindow();
@@ -119,10 +123,23 @@ function createMarkers() {
             position: position,
             title: title,
             animation: google.maps.Animation.DROP,
-            id: i,
         })
-
-        getVenueInformation(marker)
+        /************************************ */
+        placesService.findPlaceFromQuery({
+            query: marker.title,
+            fields: ['photos', 'name', 'id'],
+            locationBias: marker.position
+        }, function (results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                marker.id = results[0].id;
+                console.log(marker.title);
+                console.log(marker.id);
+            } else {
+                console.log("ERROR");
+            }
+        });
+        /************************************* */
+        getAddress(marker);
 
         marker.addListener('click', function () {
             populateInfoWindow(this);
@@ -193,36 +210,22 @@ function bounceMarker(marker) {
     }, 1000);
 }
 
-// Venue information retrieved using the Foursquare Places API
-function getVenueInformation(marker) {
+function getAddress(marker) {
     // Default values for properties
-    marker.name = "Name not available";
-    marker.phone = "Number not available";
+
     marker.address = "Address is not available";
     marker.zipCode = "Zipcode is not available";
     marker.country = "Country is not available";
+    /******************************************* */
+    /* Remove these variables if handles somewhere else */
+    marker.phone = "Number not available";
     marker.url = "URL not available";
+    /******************************************** */
     searchForVenues(marker).then(function (result) {
-        console.log("Venue Search result");
-        console.log(result);
-        let venueID = result.response.venues[0].id;
-        getVenueDetails(venueID).then(function (result) {
-            console.log("Venue Details result");
-            console.log(result);
-            if (result.response.venue.name) marker.name = result.response.venue.name;
-            if (result.response.venue.contact.formattedPhone) marker.phone = result.response.venue.contact.formattedPhone;
-            if (result.response.venue.location.formattedAddress) marker.address = result.response.venue.location.formattedAddress[0];
-            if (result.response.venue.location.formattedAddress) marker.zipCode = result.response.venue.location.formattedAddress[1];
-            if (result.response.venue.location.formattedAddress) marker.country = result.response.venue.location.formattedAddress[2];
-            if (result.response.venue.url) marker.url = result.response.venue.url;
-        });
-        getVenuePhoto(venueID).then(function (result) {
-            console.log("Venue Photo result");
-            console.log(result);
-            let prefix = result.response.photos.items[0].prefix;
-            let suffix = result.response.photos.items[0].suffix;
-            let size = "116x116"
-            marker.imgURL = prefix + size + suffix;
-        });
+        //console.log("Venue Search result");
+        //console.log(result);
+        if (result.response.venues[0].location.formattedAddress) marker.address = result.response.venues[0].location.formattedAddress[0];
+        if (result.response.venues[0].location.formattedAddress) marker.zipCode = result.response.venues[0].location.formattedAddress[1];
+        if (result.response.venues[0].location.formattedAddress) marker.country = result.response.venues[0].location.formattedAddress[2];
     });
 }
