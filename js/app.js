@@ -29,7 +29,17 @@ function AppViewModel() {
         if (self.filteredPOIList().length > 0) {
             fitMapToMarkers();
         }
+
+        if (self.filteredPOIList().length === 1) {
+            self.openMarker(self.filteredPOIList()[0]);
+        }
     })
+
+    this.openMarker = function(marker) {
+        populateInfoWindow(marker);
+        zoomToArea(marker);
+        bounceMarker(marker);
+    }
 
     // All click bindings //
     this.menuToggle = function () {
