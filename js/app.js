@@ -9,7 +9,7 @@ function AppViewModel() {
         // Filters which poi are displayed in the list and as a marker on the map
         let filter = self.filterWord().toLowerCase();
         if (!filter) {
-            ko.utils.arrayForEach(self.poiList(), function(poi) {
+            ko.utils.arrayForEach(self.poiList(), function (poi) {
                 poi.setMap(map);
             });
             return self.poiList();
@@ -25,9 +25,10 @@ function AppViewModel() {
         }
     });
 
-    this.executeMapBoundsFitting =  ko.computed(function() {
-        let filteredPOIList = self.filteredPOIList();
-        fitMapToMarkers();
+    this.executeMapBoundsFitting = ko.computed(function () {
+        if (self.filteredPOIList().length > 0) {
+            fitMapToMarkers();
+        }
     })
 
     // All click bindings //
