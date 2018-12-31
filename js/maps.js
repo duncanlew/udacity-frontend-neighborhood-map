@@ -95,7 +95,7 @@ function initMap() {
     });
     // Create PlacesService object
     placesService = new google.maps.places.PlacesService(map);
-    
+
 
     // Create markers for the map
     infoWindow = new google.maps.InfoWindow();
@@ -123,21 +123,20 @@ function createMarkers() {
             position: position,
             title: title,
             animation: google.maps.Animation.DROP,
-            id: i,
         })
         /************************************ */
         placesService.findPlaceFromQuery({
             query: marker.title,
-            fields: ['photos', 'formatted_address', 'name', 'rating', 'opening_hours', 'geometry'],
+            fields: ['photos', 'name', 'id'],
             locationBias: marker.position
-        }, function(results, status){
+        }, function (results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-                console.log(`I am looking for ${marker.title}`);
-                console.log(results);
-            } else{
+                marker.id = results[0].id;
+                console.log(marker.title);
+                console.log(marker.id);
+            } else {
                 console.log("ERROR");
             }
-
         });
         /************************************* */
         getAddress(marker);
@@ -213,7 +212,7 @@ function bounceMarker(marker) {
 
 function getAddress(marker) {
     // Default values for properties
-    
+
     marker.address = "Address is not available";
     marker.zipCode = "Zipcode is not available";
     marker.country = "Country is not available";
