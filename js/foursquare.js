@@ -22,7 +22,7 @@ function searchForVenues(marker) {
             console.log(xhr);
             console.log(status);
             console.log(error);
-            alert(`Unable to complete the Fourqure API request for \"Search for Venues\"! (error:${xhr.responseJSON.meta.errorType})`);
+            //alert(`Unable to complete the Fourqure API request for \"Search for Venues\"! (error:${xhr.responseJSON.meta.errorType})`);
         }
     });
 }
@@ -40,7 +40,7 @@ function getVenueDetails(venueID) {
             console.log(xhr);
             console.log(status);
             console.log(error);
-            alert(`Unable to complete the Fourqure API request for \"Details of Venue\"! (error:${xhr.responseJSON.meta.errorType})`)
+            //alert(`Unable to complete the Fourqure API request for \"Details of Venue\"! (error:${xhr.responseJSON.meta.errorType})`)
         }
     })
 }
@@ -58,7 +58,7 @@ function getVenuePhoto(venueID) {
             console.log(xhr);
             console.log(status);
             console.log(error);
-            alert(`Unable to complete the Fourqure API request for \"Photos of Venue\"! (error:${xhr.responseJSON.meta.errorType})`)
+            //alert(`Unable to complete the Fourqure API request for \"Photos of Venue\"! (error:${xhr.responseJSON.meta.errorType})`)
         }
     })
 }
