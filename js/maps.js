@@ -59,7 +59,7 @@ let locations = [{
         }
     },
     {
-        title: 'Noordeinde Palace',
+        title: 'Paleis Noordeinde',
         position: {
             lat: 52.080764,
             lng: 4.307623
@@ -122,42 +122,30 @@ function createMarkers() {
             id: i,
         })
 
-        /**************************************** */
-        /* Temporary !!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-        // marker.nameHTML = `Omniversum`;
-        // marker.phoneHTML = `+31-12345678`;
-        // marker.addressHTML = `Haagseweg 508`;
-        // marker.zipCodeHTML = `1234AB Den Haag`;
-        // marker.countryHTML = `The Netherlarnds`;
-        // marker.urlHTML = `www.denhaag.nl`;
-        // marker.imgURL = "https://fastly.4sqi.net/img/general/116x116/-_PMJMhipYMDmFGuLCeGO-wcg1qOCv3wDYax8pKiubg.jpg";
-        if (i === 0) {
-            console.log(marker.title);
-            searchForVenues(marker).then(function (result) {
-                console.log("Venue Search result");
+        console.log(marker.title);
+        searchForVenues(marker).then(function (result) {
+            console.log("Venue Search result");
+            console.log(result);
+            let venueID = result.response.venues[0].id;
+            getVenueDetails(venueID).then(function (result) {
+                console.log("Venue Details result");
                 console.log(result);
-                let venueID = result.response.venues[0].id;
-                getVenueDetails(venueID).then(function (result) {
-                    console.log("Venue Details result");
-                    console.log(result);
-                    marker.name = result.response.venue.name;
-                    marker.phone = result.response.venue.contact.formattedPhone;
-                    marker.address = result.response.venue.location.formattedAddress[0];
-                    marker.zipCode = result.response.venue.location.formattedAddress[1];
-                    marker.country = result.response.venue.location.formattedAddress[2];
-                    marker.url = result.response.venue.url;
-                });
-                getVenuePhoto(venueID).then(function(result){
-                    console.log("Venue Photo result");
-                    console.log(result);
-                    let prefix = result.response.photos.items[0].prefix;
-                    let suffix = result.response.photos.items[0].suffix;
-                    let size = "116x116"
-                    marker.imgURL = prefix + size + suffix;
-                });
+                marker.name = result.response.venue.name;
+                marker.phone = result.response.venue.contact.formattedPhone;
+                marker.address = result.response.venue.location.formattedAddress[0];
+                marker.zipCode = result.response.venue.location.formattedAddress[1];
+                marker.country = result.response.venue.location.formattedAddress[2];
+                marker.url = result.response.venue.url;
             });
-        }
-
+            getVenuePhoto(venueID).then(function (result) {
+                console.log("Venue Photo result");
+                console.log(result);
+                let prefix = result.response.photos.items[0].prefix;
+                let suffix = result.response.photos.items[0].suffix;
+                let size = "116x116"
+                marker.imgURL = prefix + size + suffix;
+            });
+        });
 
         marker.addListener('click', function () {
             populateInfoWindow(this);
@@ -171,7 +159,7 @@ function populateInfoWindow(marker) {
     let contentString = `<div class="info-window">
     <img src="${marker.imgURL}"/>
     <div class="text-location">
-    <h1>${marker.name}</h1>  
+    <h1>${marker.title}</h1>  
     <p>${marker.address}</p>
     <p>${marker.zipCode}</p>
     <p>${marker.country}</p>
