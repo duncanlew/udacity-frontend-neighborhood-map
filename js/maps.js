@@ -1,5 +1,4 @@
 let map;
-let placesService;
 let infoWindow;
 let markers = [];
 let startingLocation = {
@@ -93,9 +92,6 @@ function initMap() {
         zoom: startingLocation.zoom,
         styles: styles
     });
-    // Create PlacesService object
-    placesService = new google.maps.places.PlacesService(map);
-
 
     // Create markers for the map
     infoWindow = new google.maps.InfoWindow();
@@ -124,21 +120,6 @@ function createMarkers() {
             title: title,
             animation: google.maps.Animation.DROP,
         })
-        /************************************ */
-        placesService.findPlaceFromQuery({
-            query: marker.title,
-            fields: ['photos', 'name', 'id'],
-            locationBias: marker.position
-        }, function (results, status) {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                marker.id = results[0].id;
-                console.log(marker.title);
-                console.log(marker.id);
-            } else {
-                console.log("ERROR");
-            }
-        });
-        /************************************* */
         getAddress(marker);
 
         marker.addListener('click', function () {
@@ -150,18 +131,13 @@ function createMarkers() {
 }
 
 function populateInfoWindow(marker) {
-    let imgURLHTML = "";
-    if (marker.imgURL) imgURLHTML = `<img src="${marker.imgURL}"/>`;
     let contentString = `<div class="info-window">
-    ${imgURLHTML}
     <div class="text-location">
     <h1>${marker.title}</h1>  
     <p>${marker.address}</p>
     <p>${marker.zipCode}</p>
     <p>${marker.country}</p>
-    <p><i class="fas fa-phone"></i>${marker.phone}</p>
-    <i class="fas fa-globe-europe"></i><a href="${marker.url}">${marker.url}</a>
-    <p class="footer">Venue information retrieved from Foursquare</p>
+    <p class="footer">Venue address retrieved from Foursquare</p>
     </div>
     </div>`;
     if (infoWindow.marker != marker) {
@@ -216,14 +192,7 @@ function getAddress(marker) {
     marker.address = "Address is not available";
     marker.zipCode = "Zipcode is not available";
     marker.country = "Country is not available";
-    /******************************************* */
-    /* Remove these variables if handles somewhere else */
-    marker.phone = "Number not available";
-    marker.url = "URL not available";
-    /******************************************** */
     searchForVenues(marker).then(function (result) {
-        //console.log("Venue Search result");
-        //console.log(result);
         if (result.response.venues[0].location.formattedAddress) marker.address = result.response.venues[0].location.formattedAddress[0];
         if (result.response.venues[0].location.formattedAddress) marker.zipCode = result.response.venues[0].location.formattedAddress[1];
         if (result.response.venues[0].location.formattedAddress) marker.country = result.response.venues[0].location.formattedAddress[2];
