@@ -133,7 +133,7 @@ function createMarkers() {
         // marker.imgURL = "https://fastly.4sqi.net/img/general/116x116/-_PMJMhipYMDmFGuLCeGO-wcg1qOCv3wDYax8pKiubg.jpg";
         if (i === 0) {
             console.log(marker.title);
-            searchForVenues().then(function (result) {
+            searchForVenues(marker).then(function (result) {
                 console.log("Venue Search result");
                 console.log(result);
                 let venueID = result.response.venues[0].id;
@@ -170,13 +170,13 @@ function createMarkers() {
 function populateInfoWindow(marker) {
     let contentString = `<div class="info-window">
     <img src="${marker.imgURL}"/>
-    <div class="testing-window">
-    <h1>${marker.title}</h1>  
-    <p>${marker.addressHTML}</p>
-    <p>${marker.zipCodeHTML}</p>
-    <p>${marker.countryHTML}</p>
-    <p><i class="fas fa-phone"></i>${marker.phoneHTML}</p>
-    <i class="fas fa-globe-europe"></i><a href="${marker.urlHTML}">${marker.urlHTML}</a>
+    <div class="text-location">
+    <h1>${marker.name}</h1>  
+    <p>${marker.address}</p>
+    <p>${marker.zipCode}</p>
+    <p>${marker.country}</p>
+    <p><i class="fas fa-phone"></i>${marker.phone}</p>
+    <i class="fas fa-globe-europe"></i><a href="${marker.url}">${marker.url}</a>
     </div>
     </div>`;
     if (infoWindow.marker != marker) {

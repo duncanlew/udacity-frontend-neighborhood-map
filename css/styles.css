@@ -128,11 +128,12 @@ li:hover {
     float: left;
 }
 
-.testing-window {
+.text-location {
     float: left;
     padding-left: 5px;
 }
 
 .fa-phone, .fa-globe-europe {
     height: 1px !important;
+    padding-right: 5px;
 }

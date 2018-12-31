@@ -4,20 +4,15 @@ let clientSecret = "JXX45EHZNRK31OPUBOHVTW4HDFNTESIJJ5LLTIHBWQ3IHCMY";
 let authenticationParameter = "&client_id=" + clientID + "&client_secret=" + clientSecret;
 let versionDate = "&v=20181229"
 
-/********************************************* */
-// let venueID = "4b4853c4f964a520a74b26e3";
-// getVenuePhoto(venueID);
-// "https://fastly.4sqi.net/img/general/"
-// "/-_PMJMhipYMDmFGuLCeGO-wcg1qOCv3wDYax8pKiubg.jpg"
-// url = "https://fastly.4sqi.net/img/general/36x36/-_PMJMhipYMDmFGuLCeGO-wcg1qOCv3wDYax8pKiubg.jpg"
-
-/********************************************* */
-
 // Search for Venues
-function searchForVenues() {
+function searchForVenues(marker) {
+    let query = marker.title;
+    let lat = marker.getPosition().lat();
+    let lng = marker.getPosition().lng();
+    let ll = `${lat},${lng}`;
     let url = "https://api.foursquare.com/v2/venues/search" +
-        "?ll=52.0892494,4.2798414" +
-        "&query=Omniversum" + authenticationParameter + versionDate;
+        `?ll=${ll}` + 
+        `&query=${query}` + authenticationParameter + versionDate;
     return $.ajax({
         type: "GET",
         dataType: "json",
@@ -50,6 +45,7 @@ function getVenueDetails(venueID) {
     })
 }
 
+// Get Photo of Venue
 function getVenuePhoto(venueID) {
     let url = "https://api.foursquare.com/v2/venues/" + venueID + "/photos?" +
         authenticationParameter + versionDate;
@@ -58,9 +54,6 @@ function getVenuePhoto(venueID) {
         dataType: "json",
         cache: false,
         url: url,
-        success: function(result) {
-            console.log(result);
-        },
         error: function (xhr, status, error) {
             console.log(xhr);
             console.log(status);
