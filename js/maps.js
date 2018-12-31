@@ -122,36 +122,7 @@ function createMarkers() {
             id: i,
         })
 
-        // Default values for properties
-        marker.name = "Name not available";
-        marker.phone = "Number not available";
-        marker.address = "Address is not available";
-        marker.zipCode = "Zipcode is not available";
-        marker.country = "Country is not available";
-        marker.url = "URL not available";
-        searchForVenues(marker).then(function (result) {
-            console.log("Venue Search result");
-            console.log(result);
-            let venueID = result.response.venues[0].id;
-            getVenueDetails(venueID).then(function (result) {
-                console.log("Venue Details result");
-                console.log(result);
-                if (result.response.venue.name) marker.name = result.response.venue.name;
-                if (result.response.venue.contact.formattedPhone) marker.phone = result.response.venue.contact.formattedPhone;
-                if (result.response.venue.location.formattedAddress) marker.address = result.response.venue.location.formattedAddress[0];
-                if (result.response.venue.location.formattedAddress) marker.zipCode = result.response.venue.location.formattedAddress[1];
-                if (result.response.venue.location.formattedAddress) marker.country = result.response.venue.location.formattedAddress[2];
-                if (result.response.venue.url) marker.url = result.response.venue.url;
-            });
-            getVenuePhoto(venueID).then(function (result) {
-                console.log("Venue Photo result");
-                console.log(result);
-                let prefix = result.response.photos.items[0].prefix;
-                let suffix = result.response.photos.items[0].suffix;
-                let size = "116x116"
-                marker.imgURL = prefix + size + suffix;
-            });
-        });
+        getVenueInformation(marker)
 
         marker.addListener('click', function () {
             populateInfoWindow(this);
@@ -220,4 +191,38 @@ function bounceMarker(marker) {
     setTimeout(function () {
         marker.setAnimation(null);
     }, 1000);
+}
+
+// Venue information retrieved using the Foursquare Places API
+function getVenueInformation(marker) {
+    // Default values for properties
+    marker.name = "Name not available";
+    marker.phone = "Number not available";
+    marker.address = "Address is not available";
+    marker.zipCode = "Zipcode is not available";
+    marker.country = "Country is not available";
+    marker.url = "URL not available";
+    searchForVenues(marker).then(function (result) {
+        console.log("Venue Search result");
+        console.log(result);
+        let venueID = result.response.venues[0].id;
+        getVenueDetails(venueID).then(function (result) {
+            console.log("Venue Details result");
+            console.log(result);
+            if (result.response.venue.name) marker.name = result.response.venue.name;
+            if (result.response.venue.contact.formattedPhone) marker.phone = result.response.venue.contact.formattedPhone;
+            if (result.response.venue.location.formattedAddress) marker.address = result.response.venue.location.formattedAddress[0];
+            if (result.response.venue.location.formattedAddress) marker.zipCode = result.response.venue.location.formattedAddress[1];
+            if (result.response.venue.location.formattedAddress) marker.country = result.response.venue.location.formattedAddress[2];
+            if (result.response.venue.url) marker.url = result.response.venue.url;
+        });
+        getVenuePhoto(venueID).then(function (result) {
+            console.log("Venue Photo result");
+            console.log(result);
+            let prefix = result.response.photos.items[0].prefix;
+            let suffix = result.response.photos.items[0].suffix;
+            let size = "116x116"
+            marker.imgURL = prefix + size + suffix;
+        });
+    });
 }
