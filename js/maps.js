@@ -104,7 +104,7 @@ function initMap() {
 
     // listen for the window resize event & trigger Google Maps to update too
     $(window).resize(function () {
-        console.log("resizing detected)");
+        setMapCorrectHeight();
         google.maps.event.trigger(map, "resize");
     });
 }
