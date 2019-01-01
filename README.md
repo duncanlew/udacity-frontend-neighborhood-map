@@ -13,6 +13,8 @@ To test the site out, please visit the following link: [The Hague Neighborhood M
 
 ## Used Resources
 The following resources were used for the creation of this application
-* Google Maps API 
-* Foursquare API
-* Bootstrap
+* [Knockout 3.4.2](https://knockoutjs.com/)
+* [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial)
+* [Foursquare Places API](https://developer.foursquare.com/places-api)
+* [Bootstrap 4.2.1](https://getbootstrap.com/)
+* Inspiration for creation of sidebar:[Simple Sidebar](https://startbootstrap.com/template-overviews/simple-sidebar/)
