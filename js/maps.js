@@ -105,7 +105,6 @@ function initMap() {
     // listen for the window resize event & trigger Google Maps to update too
     $(window).resize(function () {
         setMapCorrectHeight();
-        google.maps.event.trigger(map, "resize");
     });
 }
 
@@ -114,6 +113,15 @@ function setMapCorrectHeight() {
     let windowHeight = $(window).outerHeight(true);
     let mapsHeight = windowHeight - headingHeight;
     $("#map").height(mapsHeight);
+    google.maps.event.trigger(map, "resize");
+}
+
+function setMapCorrectWidth(isSidebarClosed) {
+    let sidebarWidth = parseInt($(":root").css("--width-sidebar"));
+    let windowWidth = $(window).outerWidth(true);
+    let mapWidth = isSidebarClosed ? (windowWidth - sidebarWidth) : "100%";
+    $("#map").width(mapWidth);
+    google.maps.event.trigger(map, "resize");
 }
 
 function createMarkers() {

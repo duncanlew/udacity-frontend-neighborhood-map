@@ -47,11 +47,8 @@ function AppViewModel() {
         // Open or close the sidebar based on the state of the closedSidebar
         ko.utils.toggleDomNodeCssClass($("#wrapper")[0], "toggled", self.closedSidebar());
 
-        let sidebarWidth = parseInt($(":root").css("--width-sidebar"));
-        let windowWidth = $(window).outerWidth(true);
-        let mapWidth = self.closedSidebar() ? (windowWidth - sidebarWidth) : "100%";
-        $("#map").width(mapWidth);
-        google.maps.event.trigger(map, "resize");
+        setMapCorrectWidth(self.closedSidebar());
+
         // Toggle the boolean value
         this.closedSidebar(!this.closedSidebar());
     }
