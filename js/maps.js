@@ -105,6 +105,7 @@ function initMap() {
     // listen for the window resize event & trigger Google Maps to update too
     $(window).resize(function () {
         setMapCorrectHeight();
+        setMapCorrectWidth();
     });
 }
 
@@ -117,11 +118,14 @@ function setMapCorrectHeight() {
 }
 
 function setMapCorrectWidth(isSidebarClosed) {
-    let sidebarWidth = parseInt($(":root").css("--width-sidebar"));
-    let windowWidth = $(window).outerWidth(true);
-    let mapWidth = isSidebarClosed ? (windowWidth - sidebarWidth) : "100%";
-    $("#map").width(mapWidth);
-    google.maps.event.trigger(map, "resize");
+    if ($(window).width() >= 768) {
+        let sidebarWidth = parseInt($(":root").css("--width-sidebar"));
+        let windowWidth = $(window).outerWidth(true);
+        let mapWidth = isSidebarClosed ? (windowWidth - sidebarWidth) : "100%";
+        $("#map").width(mapWidth);
+        google.maps.event.trigger(map, "resize");
+    }
+    
 }
 
 function createMarkers() {
@@ -151,7 +155,7 @@ function populateInfoWindow(marker) {
     <p>${marker.address}</p>
     <p>${marker.zipCode}</p>
     <p>${marker.country}</p>
-    <p class="footer">Venue address retrieved from Foursquare</p>
+    <p class="footer">Address from Fourquare</p>
     </div>
     </div>`;
     if (infoWindow.marker != marker) {
