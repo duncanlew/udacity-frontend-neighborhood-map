@@ -101,6 +101,12 @@ function initMap() {
         // Start Knockout after Google Maps has been loaded
         startKnockout();
     });
+
+    // listen for the window resize event & trigger Google Maps to update too
+    $(window).resize(function () {
+        console.log("resizing detected)");
+        google.maps.event.trigger(map, "resize");
+    });
 }
 
 function setMapCorrectHeight() {
