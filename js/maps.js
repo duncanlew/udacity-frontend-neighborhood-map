@@ -194,7 +194,6 @@ function bounceMarker(marker) {
 
 function getAddress(marker) {
     // Default values for properties
-
     marker.address = "Address is not available";
     marker.zipCode = "Zipcode is not available";
     marker.country = "Country is not available";
