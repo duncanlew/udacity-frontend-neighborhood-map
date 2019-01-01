@@ -10,7 +10,7 @@ To test the site out, please visit the following link: [The Hague Neighborhood M
 
 
 ## Running locally
-In order to run this application locally on your system, you will first need an [API key](https://developers.google.com/maps/documentation/javascript/get-api-key) for the Google Maps Javascript API. The reason for creating your own API key is because the API key in the repository is only whitelisted for certain domain names. 
+In order to run this application locally on your system, you will first need an [API key](https://developers.google.com/maps/documentation/javascript/get-api-key) for the Google Maps Javascript API. The reason for creating your own API key is because the API key in the repository is only whitelisted for certain domains. 
 
 ### Step 1: Clone the repository
 Clone the respository by running the following command:
