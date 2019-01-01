@@ -5,7 +5,7 @@ This is the repository for the project of Udacity Neighborhood Map. This is done
 The goal of this neighborhood app is to showcase the usage of the Knockout Framework 
 
 ## Live website
-To test the site out, please visit the following link: [The Hague Neighborhood Map](https://duncanlew.github.io/frontend-nanodegree-arcade-game/index.html)
+To test the site out, please visit the following link: [The Hague Neighborhood Map](https://duncanlew.github.io/udacity_neighborhood_map/)
 
 
 ## Getting started
