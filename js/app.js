@@ -54,8 +54,10 @@ function AppViewModel() {
     }
 
     this.clickedMarker = function (marker) {
+        if ($(window).width() < 768) {
+            self.menuToggle();
+        }
         self.openMarkerInfoWindow(marker);
-        self.menuToggle();
     }
 
     this.clickedRecenterMap = function () {
