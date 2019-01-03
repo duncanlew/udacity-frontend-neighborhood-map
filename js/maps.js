@@ -8,7 +8,7 @@ let startingLocation = {
         lng: 4.2877023
     },
     zoom: 13
-}
+};
 
 
 function initMap() {
@@ -16,7 +16,7 @@ function initMap() {
     setMapCorrectHeight();
 
     // Creation of map object
-    map = new google.maps.Map($('#map')[0], {
+    map = new google.maps.Map($("#map")[0], {
         center: startingLocation.position,
         zoom: startingLocation.zoom,
         styles: styles
@@ -24,9 +24,9 @@ function initMap() {
 
     // Create markers for the map
     infoWindow = new google.maps.InfoWindow();
-    createMarkers()
+    createMarkers();
 
-    google.maps.event.addListenerOnce(map, 'idle', function () {
+    google.maps.event.addListenerOnce(map, "idle", function () {
         // Start Knockout after Google Maps has been loaded
         startKnockout();
     });
