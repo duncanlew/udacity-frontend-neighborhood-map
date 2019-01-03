@@ -215,3 +215,7 @@ function getAddress(marker) {
         if (result.response.venues[0].location.formattedAddress) marker.country = result.response.venues[0].location.formattedAddress[2];
     });
 }
+
+function failedInitMaps(){
+    alert("Unable to load Google Maps!");
+}
