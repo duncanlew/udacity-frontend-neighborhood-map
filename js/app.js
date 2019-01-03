@@ -35,13 +35,13 @@ function AppViewModel() {
         if (self.filteredPOIList().length === 1) {
             self.openMarkerInfoWindow(self.filteredPOIList()[0]);
         }
-    })
+    });
 
     this.openMarkerInfoWindow = function (marker) {
         populateInfoWindow(marker);
         zoomToArea(marker);
         bounceMarker(marker);
-    }
+    };
 
     this.menuToggle = function () {
         // Open or close the sidebar based on the state of the closedSidebar
@@ -51,18 +51,18 @@ function AppViewModel() {
 
         // Toggle the boolean value
         this.closedSidebar(!this.closedSidebar());
-    }
+    };
 
     this.clickedMarker = function (marker) {
         if ($(window).width() < 768) {
             self.menuToggle();
         }
         self.openMarkerInfoWindow(marker);
-    }
+    };
 
     this.clickedRecenterMap = function () {
         recenterMap();
-    }
+    };
 }
 
 function startKnockout() {

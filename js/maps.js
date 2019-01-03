@@ -66,7 +66,7 @@ function createMarkers() {
             position: position,
             title: title,
             animation: google.maps.Animation.DROP,
-        })
+        });
         getAddress(marker);
 
         marker.addListener('click', function () {
@@ -94,7 +94,7 @@ function populateInfoWindow(marker) {
 
         infoWindow.addListener('closeclick', function () {
             infoWindow.marker = null;
-        })
+        });
     }
 }
 
