@@ -1,8 +1,8 @@
 /* Foursquare api */
-let clientID = "NNJPH2TSHWCDQM5T4KLADPREOKVVZZYA0BWL4FBEOGZ1WKTC";
-let clientSecret = "HZVBH2XYU5CSDTXEGBV3FEZ2ATUDNI3IJVRDPTBVCOOJD2NP";
-let authenticationParameter = "&client_id=" + clientID + "&client_secret=" + clientSecret;
-let versionDate = "&v=20181229"
+const CLIENT_ID = "NNJPH2TSHWCDQM5T4KLADPREOKVVZZYA0BWL4FBEOGZ1WKTC";
+const CLIENT_SECRET = "HZVBH2XYU5CSDTXEGBV3FEZ2ATUDNI3IJVRDPTBVCOOJD2NP";
+const AUTHENTICATION_PARAMETER = "&client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET;
+const versionDate = "&v=20181229";
 
 // Search for Venues
 function searchForVenues(marker) {
@@ -12,17 +12,15 @@ function searchForVenues(marker) {
     let ll = `${lat},${lng}`;
     let url = "https://api.foursquare.com/v2/venues/search" +
         `?ll=${ll}` + 
-        `&query=${query}` + authenticationParameter + versionDate;
+        `&query=${query}` + AUTHENTICATION_PARAMETER + versionDate;
     return $.ajax({
         type: "GET",
         dataType: "json",
         cache: false,
         url: url,
-        error: function (xhr, status, error) {
-            console.log(xhr);
-            console.log(status);
+        error: function (error) {
             console.log(error);
-            alert(`Unable to complete the Fourqure API request for \"Search for Venues\"! (error:${xhr.responseJSON.meta.errorType})`);
+            alert(`Unable to complete the Fourqure API request for \"Search for Venues\"! (error:${error})`);
         }
     });
 }
