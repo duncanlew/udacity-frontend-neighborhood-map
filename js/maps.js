@@ -69,13 +69,18 @@ function createMarkers() {
         });
         getAddress(marker);
 
-        marker.addListener('click', function () {
-            populateInfoWindow(this);
-            bounceMarker(this);
-        });
+        google.maps.event.addListener(marker, 'click', markerClickListener(marker));
         markers.push(marker);
     }
 }
+
+function markerClickListener(marker) {
+    return function () {
+        populateInfoWindow(marker);
+        bounceMarker(marker);
+    };
+}
+
 
 function populateInfoWindow(marker) {
     let contentString = `<div class="info-window">
