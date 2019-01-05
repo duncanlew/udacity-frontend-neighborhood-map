@@ -84,7 +84,8 @@ function populateInfoWindow(marker) {
     <p>${marker.address}</p>
     <p>${marker.zipCode}</p>
     <p>${marker.country}</p>
-    <p class="footer">Address from Fourquare</p>
+    <p><a href="http://foursquare.com/v/${marker.id}">More info</a></p>
+    <img src="images/powered-by-foursquare-blue.png" alt="Powered by Foursquare" height="10px">
     </div>
     </div>`;
     if (infoWindow.marker != marker) {
@@ -139,6 +140,7 @@ function getAddress(marker) {
     marker.zipCode = "Zipcode is not available";
     marker.country = "Country is not available";
     searchForVenues(marker).then(function (result) {
+        marker.id = result.response.venues[0].id;
         if (result.response.venues[0].location.formattedAddress) marker.address = result.response.venues[0].location.formattedAddress[0];
         if (result.response.venues[0].location.formattedAddress) marker.zipCode = result.response.venues[0].location.formattedAddress[1];
         if (result.response.venues[0].location.formattedAddress) marker.country = result.response.venues[0].location.formattedAddress[2];
